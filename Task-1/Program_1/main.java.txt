@@ -1,0 +1,54 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+public class seperate {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("ENTER THE STRING : ");
+        String s=in.next();
+        String str=s.replaceAll("[^0-9]","");
+        String str1=s.replaceAll("[0-9A-Za-z]","");
+        ArrayList<Integer>lst=new ArrayList<>();
+        ArrayList<Character>lst1=new ArrayList<>();
+        
+        //Seperate the Operators from String
+        for(int i=0;i<str1.length();i++)
+        {
+            char c=str1.charAt(i);
+            lst1.add(c);
+        }
+        
+        //seperate the Digits from String
+        for(int i=0;i<str.length();i++)
+        {
+            char c=str.charAt(i);
+            if((int)c>=48 && (int)c<=57)
+            {
+                int a=c-'0';
+                lst.add(a);
+            }
+        }
+        
+        //Required OPeration
+        int sum=lst.get(0);
+            for(int i=0;i<lst1.size();i++)
+            {
+                if(lst1.get(i)=='+')
+               {
+                   sum+=lst.get(i+1);
+               }
+               else if(lst1.get(i)=='-')
+               {
+                   sum-=lst.get(i+1);
+               }
+               else if(lst1.get(i)=='*')
+               {
+                   sum*=lst.get(i+1);
+               }
+               else if(lst1.get(i)=='/')
+               {
+                   sum/=lst.get(i+1);
+               }
+            }
+            System.out.print(lst+"\n"+lst1+"\nSUM : "+sum+"\n");
+    } 
+}
